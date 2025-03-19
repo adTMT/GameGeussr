@@ -1,0 +1,7 @@
+body{
+    display: flex;
+  justify-content: center; /* Horizontaal centreren */
+  align-items: center; /* Verticaal centreren */
+  height: 100vh;
+  background-color: #B3BA37;
+}

@@ -1,0 +1,31 @@
+.Titel{
+    font-size: 100px;
+    font-weight: bolder;
+}
+.Titel2{
+    font-size: 60px;
+    font-weight: bolder;
+}
+.play{
+    width: 20rem;
+    font-size: 30px;
+    font-weight: bolder;
+    background-color: #328A9C;
+    color: white;
+}
+.level{
+    width: 15rem;
+    font-size: 20px;
+    font-weight: bolder;
+    background-color: #EEA915;
+    margin-left: 12.5%;
+    margin-top: 2px;
+}
+.gamemodes{
+    width: 10rem;
+    margin-left: 25%;
+    margin-top: 2px;
+    background-color: #EEA915;
+    font-size: 20px;
+    font-weight: bolder;
+}
