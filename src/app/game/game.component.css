@@ -1,0 +1,142 @@
+.level-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #f0ead6; /* Achtergrondkleur zoals in de mockup */
+    border-radius: 10px;
+    width: 90%;
+    max-width: 500px; /* Maximale breedte voor de container */
+    margin: 0 auto; /* Centreer de container */
+  }
+  
+  .top-section {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  .level-info,
+  .score-info {
+    background-color: #ddd; /* Lichtgrijze achtergrond */
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 1.2em;
+    min-width: 80px; /* Zorg voor een minimale breedte */
+    text-align: center;
+  }
+  
+  .image-container {
+    margin-bottom: 20px;
+    /* border: 2px solid #ccc;  Geen border, ziet er beter uit zonder */
+    border-radius: 5px;
+    overflow: hidden; /* Zorg dat de afbeelding de afgeronde hoeken respecteert */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtiele schaduw */
+    width: 100%; /* Zorg dat de afbeelding container de volle breedte heeft */
+  }
+  .image-container img{
+      width: 100%; /* Afbeelding vult de container */
+      height: auto; /* Behoud de aspect ratio */
+      display: block; /* Verwijdert extra ruimte onder de afbeelding*/
+  }
+  
+  .hints-section {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  .hint {
+    background-color: #ffd700; /* Gouden kleur voor hints */
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 1.2em;
+    min-width: 80px;
+    text-align: center;
+    color: #333; /* Donkere tekst voor betere leesbaarheid */
+  }
+  .hint1{
+      margin-right: 10px;
+  }
+  
+  .hint2{
+      margin-left: 10px;
+  }
+  
+  .word-display {
+    display: flex;
+    justify-content: center; /* Centreer de lettervakken */
+    margin-bottom: 20px;
+    gap: 8px; /* Ruimte tussen de vakken */
+  }
+  
+  .letter-box {
+    width: 40px; /* Vaste breedte voor de vakken */
+    height: 40px; /* Vaste hoogte voor de vakken */
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    font-size: 1.5em; /* Grotere lettergrootte */
+    text-align: center;
+    line-height: 40px; /* Verticale centrering van de letter */
+    background-color: white; /* Witte achtergrond */
+    cursor: pointer; /* Handje als je erover hovert */
+    transition: background-color 0.2s; /* Zachte overgang voor hover effecten */
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); /* Subtiele schaduw */
+  }
+  
+  .letter-box:hover {
+    background-color: #f0f0f0; /* Iets lichtere achtergrond bij hover */
+  }
+  .letter-box:active{
+      background-color: #ddd; /* Nog lichter bij klikken */
+  }
+  
+  .letter-bank {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr); /* 6 kolommen, past zich aan de breedte aan */
+    gap: 8px; /* Ruimte tussen de letters */
+    width: 100%; /* Zorg dat de letterbank de volle breedte heeft */
+    justify-content: center; /* Centreer de letters in de container */
+  }
+  
+  .letter-button {
+    width: 100%; /* Zorg dat de knoppen de cellen vullen */
+    height: 40px;
+    border: none;
+    border-radius: 5px;
+    background-color: #b3ba37; /* Groene achtergrondkleur */
+    color: white;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center; /* Centreer de letter */
+    line-height: 40px;
+  }
+  
+  .letter-button:hover {
+    background-color: #8e942a; /* Donkerder groen bij hover */
+  }
+  .letter-button:active{
+       background-color: #6b7018; /* Nog donkerder bij klikken */
+  }
+  .actions{
+      display: flex;
+      justify-content: space-around;
+      width: 100%;
+      margin-top: 20px;
+  }
+  .actions button{
+      padding: 10px 20px;
+      border-radius: 5px;
+      background-color: #328A9C;
+      color: white;
+      border: none;
+      cursor: pointer;
+  }
+  .actions button:hover{
+       background-color: #286f7e;
+  }
+  
