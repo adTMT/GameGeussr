@@ -139,4 +139,16 @@
   .actions button:hover{
        background-color: #286f7e;
   }
+  .level-done{
+    background-color: rgb(33, 146, 33);
+    color: #ddd;
+    font-size: 60px;
+    height: 20rem;
+    width: 20rem;
+    text-align: center;
+    padding-top: 10rem;
+  }
+  .red-text{
+    color: red;
+  }
   

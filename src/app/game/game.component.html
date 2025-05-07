@@ -1,7 +1,8 @@
+@if (currentLevel?.Done == null || currentLevel?.Done == false) {
 <div class="level-container">
     <div class="top-section">
       <div class="level-info">
-        <span>Level {{levelNumber}}</span>
+        <span>Level {{currentLevel?.levelNumber}}</span>
       </div>
       <div class="score-info">
         <span>{{score}}</span>
@@ -20,15 +21,18 @@
         <span>💡 {{hintCost2}}</span>
       </div>
     </div>
-  
+
+    @if(currentLevel?.Done == false){
+        <div class="red-text">dit is fout</div>
+    }
     <div class="word-display">
-      @for (letter of guessedLetters; track $index) {
+      @for (letter of currentLevel?.guessedLetters; track $index) {
         <div class="letter-box" (click)="removeLetter($index)">{{letter}}</div>
       }
     </div>
   
     <div class="letter-bank">
-      @for (letter of letters; track $index) {
+      @for (letter of currentLevel?.letters; track $index) {
         <div class="letter-box" (click)="selectLetter(letter, $index)">{{letter}}</div>
       }
       </div>
@@ -37,4 +41,11 @@
           <button (click)="useHint1()">Hint 1</button>
           <button (click)="useHint2()">Hint 2</button>
           <button (click)="checkAnswer()">Check Answer</button>
-      </div>  
+      </div> 
+} 
+@if (currentLevel?.Done == true) {
+    <div class="level-container">
+        <div class="level-done">W</div>
+        <button class="play" [routerLink]="['/level', nextLevel]">Next Level</button><br>
+    </div>
+}

@@ -1,76 +1,133 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router'; // Import Router
+import { Subscription } from 'rxjs';
+import { LevelService } from '../level.service';
+import { Level } from '../types';
 
 @Component({
   selector: 'app-game',
   standalone: true,
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './game.component.html',
   styleUrl: './game.component.css'
 })
-export class GameComponent {
-  levelNumber = 4; // Voorbeeld level nummer
-  score = 50;       // Voorbeeld score
-  hintCost1 = 50;    // Kosten voor eerste hint
-  hintCost2 = 10;    // Kosten voor tweede hint
-  letters = ['F', 'S', 'A', 'X', 'B', 'R', '5', 'E', '2', 'L', 'C', 'T']; // Beschikbare letters
-  guessedLetters: string[] = ['', '', 'E', '', '', '']; // Correct geraden letters, initieel met lege strings
-  answer: String[] = ['E', 'A', 'F', 'C', '2', '5'];
-  //imageUrl = '../images/football.jpg'; //  Zorg dat dit pad correct is!
-  imageUrl = 'https://yorbodyfysiotherapie.nl/wp-content/uploads/2021/08/voetbal-blessures.jpg'; // Placeholder image, vervang dit!
+export class GameComponent implements OnInit, OnDestroy {
+  currentLevel: Level | undefined;
+  score: number;
+  hintCost1: number;
+  hintCost2: number;
+  imageUrl = 'https://yorbodyfysiotherapie.nl/wp-content/uploads/2021/08/voetbal-blessures.jpg';
+  routeSubscription?: Subscription;
+  nextLevel: number;
 
-  constructor() { }
+  constructor(
+    private levelService: LevelService,
+    private route: ActivatedRoute,
+    private router: Router // Inject Router
+  ) {
+    this.score = this.levelService.score;
+    this.hintCost1 = this.levelService.hintCost1;
+    this.hintCost2 = this.levelService.hintCost2;
+    this.nextLevel = Number(this.currentLevel?.levelNumber);
+  }
 
   ngOnInit(): void {
-  }
-
-  selectLetter(letter: string, index: number) {
-    // Logica om een letter te selecteren en in het geraden woord te plaatsen
-    console.log(`Letter ${letter} geklikt op index ${index}`);
-    // Implementeer hier de logica om de letter aan de guessedLetters array toe te voegen
-    // en de UI bij te werken.  Je moet rekening houden met de lege plekken.
-
-    // Voorbeeld (zeer basic):
-    for (let i = 0; i < this.guessedLetters.length; i++) {
-      if (this.guessedLetters[i] === '') {
-        this.guessedLetters[i] = letter;
-        break; // Stop na het plaatsen van de letter
+    this.routeSubscription = this.route.paramMap.subscribe(params => {
+      const id = params.get('id');
+      if (id && !isNaN(Number(id))) {
+        const levelNumber = Number(id);
+        this.currentLevel = this.levelService.getLevel('raad_het_woord', levelNumber);
+        if(this.currentLevel?.levelNumber)
+        this.nextLevel = this.currentLevel?.levelNumber + 1;
+        if (!this.currentLevel) {
+          console.error(`Level with number ${levelNumber} not found`);
+          this.router.navigate(['/levels']); // Redirect to levels page
+        }
+      } else {
+        console.error('Invalid or missing level ID.');
+        this.router.navigate(['/levels']); // Redirect to levels page
       }
+    });
+  }
+
+  ngOnDestroy(): void {
+    if (this.routeSubscription) {
+      this.routeSubscription.unsubscribe();
     }
   }
 
-    removeLetter(index: number) {
-        // Logica om een letter te verwijderen uit het geraden woord
-        console.log(`Letter verwijderen op index ${index}`);
-        this.guessedLetters[index] = ''; // Verwijder de letter op de gegeven index
+    selectLetter(letter: string, index: number): void {
+    if (!this.currentLevel) return;
+
+    console.log(`Letter ${letter} geklikt op index ${index}`);
+
+    // Controleer of de letter al is gebruikt
+    if (this.currentLevel.guessedLetters.includes(letter)) {
+      return;
     }
 
-  get displayString() {
-        return this.guessedLetters.join('');
-  }
-  useHint1() {
-    // Implementeer logica voor Hint 1
-    console.log('Hint 1 gebruikt');
-  }
-
-  useHint2() {
-    // Implementeer logica voor Hint 2
-    console.log('Hint 2 gebruikt');
+    // Zoek de eerste lege plek om de letter in te voegen
+    const emptyIndex = this.currentLevel.guessedLetters.findIndex(guessedLetter => guessedLetter === '');
+    if (emptyIndex !== -1) {
+      this.currentLevel.guessedLetters[emptyIndex] = letter;
+      this.levelService.updateGuessedLetters('raad_het_woord', this.currentLevel.levelNumber, this.currentLevel.guessedLetters); // Update via de service
+    }
   }
 
-  checkAnswer() {
-    // Implementeer logica om het antwoord te controleren
+  removeLetter(index: number): void {
+    if (!this.currentLevel) return;
+
+    console.log(`Letter verwijderen op index ${index}`);
+    this.currentLevel.guessedLetters[index] = '';
+     this.levelService.updateGuessedLetters('raad_het_woord', this.currentLevel.levelNumber, this.currentLevel.guessedLetters);  // Update via de service
+  }
+
+  get displayString(): string | null {
+    return this.currentLevel ? this.currentLevel.guessedLetters.join('') : null;
+  }
+
+  useHint1(): void {
+    if (!this.currentLevel) return;
+
+    if (this.score >= this.hintCost1) {
+      console.log('Hint 1 gebruikt');
+      this.score -= this.hintCost1;
+      this.levelService.updateScore(this.score);
+      // Implement hint 1 logic
+    } else {
+      console.log('Niet genoeg geld');
+    }
+  }
+
+  useHint2(): void {
+    if (!this.currentLevel) return;
+    if (this.score >= this.hintCost2) {
+      console.log('Hint 2 gebruikt');
+      this.score -= this.hintCost2;
+      this.levelService.updateScore(this.score);
+      // Implement hint 2 logic
+    } else {
+      console.log('Niet genoeg geld');
+    }
+  }
+
+  checkAnswer(): void {
+    if (!this.currentLevel) return;
     console.log('Antwoord controleren');
-    const guessedWord = this.guessedLetters.join(''); // Zet de array van guessedLetters om in een string
+    const guessedWord = this.currentLevel.guessedLetters.join('').toUpperCase();
+    const correctAnswer = this.currentLevel.answer.join('').toUpperCase();
 
-    // Zorg ervoor dat je een 'answer' hebt om mee te vergelijken.  Dit moet je ergens definieren.
-    const correctAnswer = this.answer.join('');
-
-    if (guessedWord.toUpperCase() === correctAnswer.toUpperCase()) { // Vergelijk de woorden, case-insensitive
+    if (guessedWord === correctAnswer) {
       console.log('Correct!!!!!');
-      // Hier zou je de speler belonen, naar het volgende level gaan, etc.
+      this.score += 10;
+      this.levelService.updateScore(this.score);
+      this.levelService.updateLevelStatus('raad_het_woord', this.currentLevel.levelNumber, true);
+      this.currentLevel.Done = true;
+      // Implement win logic
     } else {
       console.log('Niet correct! :(');
-      // Hier zou je de speler feedback geven, punten aftrekken, etc.
+      // Implement lose logic
+      this.currentLevel.Done =false
     }
   }
 }

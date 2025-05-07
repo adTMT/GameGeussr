@@ -1,0 +1,84 @@
+{
+    "levels": [
+      {
+        "levelNumber": 1,
+        "score": 0,
+        "letters": ["A", "B", "C", "D", "E", "F"],
+        "guessedLetters": ["", "_", "C", "", "E", ""],
+        "answer": ["A", "B", "C", "D", "E", "F"],
+        "Done": null
+      },
+      {
+        "levelNumber": 2,
+        "score": 0,
+        "letters": ["G", "H", "I", "J", "K", "L"],
+        "guessedLetters": ["", "_", "I", "", "K", ""],
+        "answer": ["G", "H", "I", "J", "K", "L"],
+        "Done": null
+      },
+      {
+        "levelNumber": 3,
+        "score": 0,
+        "letters": ["M", "N", "O", "P", "Q", "R"],
+        "guessedLetters": ["", "_", "O", "", "Q", ""],
+        "answer": ["M", "N", "O", "P", "Q", "R"],
+        "Done": null
+      }
+    ],
+    "games": {
+      "raad_het_woord": [
+        {
+          "levelNumber": 1,
+          "score": 0,
+          "letters": ["F", "S", "A", "X", "B", "R", "Z", "E", "O", "L", "C", "T"],
+          "guessedLetters": ["", "", "O", "", "", "B", "A", "L"],
+          "answer": ["V", "O", "E", "T", "B", "A", "L"],
+          "Done": null
+        },
+        {
+          "levelNumber": 2,
+          "score": 0,
+          "letters": ["H", "O", "N", "D", "E", "N", "P", "A", "R", "K"],
+          "guessedLetters": ["", "O", "N", "D"],
+          "answer": ["H", "O", "N", "D"],
+          "Done": null
+        }
+      ],
+      "emoji_quiz": [
+        {
+          "levelNumber": 1,
+          "score": 0,
+          "letters": ["😀", "😂", "😍", "😎", "🔥", "🚀"],
+          "guessedLetters": ["", "😂", "", "😎"],
+          "answer": ["😀", "😂", "😍", "😎"],
+          "Done": null
+        },
+        {
+          "levelNumber": 2,
+          "score": 0,
+          "letters": ["🚗", "🏠", "🌳", "🍎", "🎶", "🌊"],
+          "guessedLetters": ["", "🏠", "", "🍎"],
+          "answer": ["🚗", "🏠", "🌳", "🍎"],
+          "Done": null
+        }
+      ],
+      "color_quiz": [
+        {
+          "levelNumber": 1,
+          "score": 0,
+          "letters": ["rood", "blauw", "groen", "geel"],
+          "guessedLetters": ["", "blauw"],
+          "answer": ["rood", "blauw"],
+          "Done": null
+        },
+        {
+          "levelNumber": 2,
+          "score": 0,
+          "letters": ["paars", "oranje", "bruin", "zwart"],
+          "guessedLetters": ["", "oranje"],
+          "answer": ["paars", "oranje"],
+          "Done": null
+        }
+      ]
+    }
+  }
