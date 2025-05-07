@@ -9,5 +9,5 @@ export const routes: Routes = [ { path: "home", component: HomeComponent },
     { path: "settings", component: SettingsComponent},
     { path: "levels", component: LevelsComponent},
     { path: "info", component: InfoComponent},
-    { path: "level", component: GameComponent},
+    { path: "level/:id", component: GameComponent},
     { path: "", redirectTo: "home", pathMatch: "full" }];
