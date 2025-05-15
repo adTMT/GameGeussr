@@ -16,7 +16,7 @@ export class GameComponent implements OnInit, OnDestroy {
   score: number;
   hintCost1: number;
   hintCost2: number;
-  imageUrl = 'https://yorbodyfysiotherapie.nl/wp-content/uploads/2021/08/voetbal-blessures.jpg';
+  imageUrl: String = 'https://yorbodyfysiotherapie.nl/wp-content/uploads/2021/08/voetbal-blessures.jpg';
   routeSubscription?: Subscription;
   nextLevel: number;
 
@@ -29,6 +29,9 @@ export class GameComponent implements OnInit, OnDestroy {
     this.hintCost1 = this.levelService.hintCost1;
     this.hintCost2 = this.levelService.hintCost2;
     this.nextLevel = Number(this.currentLevel?.levelNumber);
+    if (this.currentLevel) {
+      this.currentLevel.usedLetterIndices = [];
+    }
   }
 
   ngOnInit(): void {
@@ -42,6 +45,11 @@ export class GameComponent implements OnInit, OnDestroy {
         if (!this.currentLevel) {
           console.error(`Level with number ${levelNumber} not found`);
           this.router.navigate(['/levels']); // Redirect to levels page
+        }
+        if(this.currentLevel?.picture)
+          this.imageUrl = this.currentLevel?.picture;
+        if (this.currentLevel && !this.currentLevel.usedLetterIndices) {
+          this.currentLevel.usedLetterIndices = [];
         }
       } else {
         console.error('Invalid or missing level ID.');
@@ -59,27 +67,44 @@ export class GameComponent implements OnInit, OnDestroy {
     selectLetter(letter: string, index: number): void {
     if (!this.currentLevel) return;
 
-    console.log(`Letter ${letter} geklikt op index ${index}`);
+    console.log(`Letter ${letter} geklikt op index ${index}`);
 
-    // Controleer of de letter al is gebruikt
-    if (this.currentLevel.guessedLetters.includes(letter)) {
-      return;
-    }
+    // Controleer of deze index al is gebruikt om een letter in het geraden woord te plaatsen
+    if (this.currentLevel.usedLetterIndices.includes(index)) {
+      return;
+    }
 
-    // Zoek de eerste lege plek om de letter in te voegen
-    const emptyIndex = this.currentLevel.guessedLetters.findIndex(guessedLetter => guessedLetter === '');
-    if (emptyIndex !== -1) {
-      this.currentLevel.guessedLetters[emptyIndex] = letter;
-      this.levelService.updateGuessedLetters('raad_het_woord', this.currentLevel.levelNumber, this.currentLevel.guessedLetters); // Update via de service
-    }
+    // Zoek de eerste lege plek om de letter in te voegen
+    const emptyIndexGuessed = this.currentLevel.guessedLetters.findIndex(guessedLetter => guessedLetter === '');
+    if (emptyIndexGuessed !== -1) {
+      this.currentLevel.guessedLetters[emptyIndexGuessed] = letter;
+      this.currentLevel.usedLetterIndices.push(index); // Markeer de index als gebruikt
+      this.levelService.updateGuessedLetters('raad_het_woord', this.currentLevel.levelNumber, this.currentLevel.guessedLetters); // Update via de service
+      this.levelService.updateUsedLetterIndices('raad_het_woord', this.currentLevel.levelNumber, this.currentLevel.usedLetterIndices); // Update de gebruikte indices via de service
+    }
   }
 
-  removeLetter(index: number): void {
+  removeLetter(indexGuessed: number): void {
     if (!this.currentLevel) return;
 
-    console.log(`Letter verwijderen op index ${index}`);
-    this.currentLevel.guessedLetters[index] = '';
-     this.levelService.updateGuessedLetters('raad_het_woord', this.currentLevel.levelNumber, this.currentLevel.guessedLetters);  // Update via de service
+    console.log(`Letter verwijderen op index ${indexGuessed}`);
+    const removedLetter = this.currentLevel.guessedLetters[indexGuessed];
+    this.currentLevel.guessedLetters[indexGuessed] = '';
+
+    // Verwijder de corresponderende index uit de usedLetterIndices array
+    const originalIndexToRemove = this.currentLevel.letters.findIndex(
+      (letter, originalIndex) => letter === removedLetter && this.currentLevel?.usedLetterIndices.includes(originalIndex)
+    );
+
+    if (originalIndexToRemove !== -1) {
+      const usedIndexToRemove = this.currentLevel.usedLetterIndices.indexOf(originalIndexToRemove);
+      if (usedIndexToRemove !== -1) {
+        this.currentLevel.usedLetterIndices.splice(usedIndexToRemove, 1);
+        this.levelService.updateUsedLetterIndices('raad_het_woord', this.currentLevel.levelNumber, this.currentLevel.usedLetterIndices); // Update de gebruikte indices via de service
+      }
+    }
+
+    this.levelService.updateGuessedLetters('raad_het_woord', this.currentLevel.levelNumber, this.currentLevel.guessedLetters);
   }
 
   get displayString(): string | null {

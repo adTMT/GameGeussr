@@ -1,76 +1,61 @@
 import { Injectable } from '@angular/core';
-import { Level } from './types'; // Zorg ervoor dat dit pad naar je Level interface correct is
+import { Level } from './types';
+import levelData from './levels.json'; // Importeer je JSON data
 
 @Injectable({
   providedIn: 'root'
 })
 export class LevelService {
-  // Sla de levels op in een object, georganiseerd per speltype
-  private games: { [gameType: string]: Level[] } = {
-    'raad_het_woord': [
-      {
-        levelNumber: 1,
-        score: 0,
-        letters: ['F', 'S', 'A', 'X', 'B', 'R', 'Z', 'E', 'O', 'L', 'C', 'T'],
-        guessedLetters: ['', '', 'O', '', '', 'B', 'A', 'L'],
-        answer: ['V', 'O', 'E', 'T', 'B', 'A', 'L'],
-        Done: null,
-      },
-      {
-        levelNumber: 2,
-        score: 0,
-        letters: ['H', 'O', 'N', 'D', 'E', 'N', 'P', 'A', 'R', 'K'],
-        guessedLetters: ['', 'O', 'N', 'D'],
-        answer: ['H', 'O', 'N', 'D'],
-        Done: null,
-      },
-      {
-        levelNumber: 3,
-        score: 0,
-        letters: ['V', 'R', 'I', 'E', 'N', 'D', 'S', 'C', 'H', 'A', 'P'],
-        guessedLetters: ['', '', '', 'E', '', 'N', 'D'],
-        answer: ['V', 'R', 'I', 'E', 'N', 'D'],
-        Done: null
-      }
-    ],
-    // Voeg hier andere speltypes toe met hun levels
-  };
+  private levels: { [gameType: string]: Level[] } = levelData.games;
+  public score: number = 0; // Algemene score, kan je aanpassen
+  public hintCost1: number = 2;
+  public hintCost2: number = 5;
 
-  public score: number = 50;  // Voorbeeld score, je kunt dit op een andere manier initialiseren indien nodig
-  public hintCost1: number = 50; // Kosten voor eerste hint
-  public hintCost2: number = 10; // Kosten voor tweede hint
-
-  constructor() { }
-
-  // Methode om alle levels voor een specifiek speltype op te halen
-  getLevels(gameType: string): Level[] {
-    return this.games[gameType] || []; // Retourneer een lege array als het speltype niet bestaat
+  constructor() {
+    // Initialiseer usedLetterIndices als deze nog niet bestaan bij het laden
+    for (const gameType in this.levels) {
+      this.levels[gameType].forEach(level => {
+        if (!level.usedLetterIndices) {
+          level.usedLetterIndices = [];
+        }
+      });
+    }
   }
 
-  // Methode om een specifiek level op te halen
+  getLevels(gameType: string): Level[] | undefined {
+    return this.levels[gameType];
+  }
+
   getLevel(gameType: string, levelNumber: number): Level | undefined {
-    const levels = this.getLevels(gameType); // Haal eerst de levels voor het speltype op
-    return levels.find(level => level.levelNumber === levelNumber); // Zoek dan het level met het nummer
+    const gameLevels = this.levels[gameType];
+    if (gameLevels && levelNumber > 0 && levelNumber <= gameLevels.length) {
+      return { ...gameLevels[levelNumber - 1] }; // Return een kopie om onbedoelde wijzigingen te voorkomen
+    }
+    return undefined;
   }
 
-  // Methode om de score bij te werken
   updateScore(newScore: number): void {
     this.score = newScore;
   }
 
-    // Methode om de guessedLetters van een level bij te werken
-  updateGuessedLetters(gameType: string, levelNumber: number, newGuessedLetters: string[]): void {
-    const level = this.getLevel(gameType, levelNumber);
-    if (level) {
-      level.guessedLetters = newGuessedLetters;
+  updateGuessedLetters(gameType: string, levelNumber: number, guessedLetters: string[]): void {
+    const gameLevels = this.levels[gameType];
+    if (gameLevels && levelNumber > 0 && levelNumber <= gameLevels.length) {
+      gameLevels[levelNumber - 1].guessedLetters = guessedLetters;
     }
   }
 
-    // Methode om de status van een level bij te werken (Done)
-    updateLevelStatus(gameType: string, levelNumber: number, done: boolean | null): void {
-        const level = this.getLevel(gameType, levelNumber);
-        if (level) {
-            level.Done = done;
-        }
+  updateLevelStatus(gameType: string, levelNumber: number, done: boolean): void {
+    const gameLevels = this.levels[gameType];
+    if (gameLevels && levelNumber > 0 && levelNumber <= gameLevels.length) {
+      gameLevels[levelNumber - 1].Done = done;
     }
+  }
+
+  updateUsedLetterIndices(gameType: string, levelNumber: number, usedIndices: number[]): void {
+    const gameLevels = this.levels[gameType];
+    if (gameLevels && levelNumber > 0 && levelNumber <= gameLevels.length) {
+      gameLevels[levelNumber - 1].usedLetterIndices = usedIndices;
+    }
+  }
 }

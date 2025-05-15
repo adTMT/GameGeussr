@@ -5,4 +5,6 @@ export interface Level {
     guessedLetters: string[];
     answer: string[]; // Corrected type to string[]
     Done: boolean | null;
+    picture?: String;
+    usedLetterIndices: number[];
   }
