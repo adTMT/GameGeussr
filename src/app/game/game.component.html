@@ -33,7 +33,10 @@
   
     <div class="letter-bank">
       @for (letter of currentLevel?.letters; track $index) {
-        <div class="letter-box" (click)="selectLetter(letter, $index)">{{letter}}</div>
+        @if (checkLetter($index)) {
+          <div class="letter-box" (click)="selectLetter(letter, $index)">{{letter}}</div>
+        }
+          
       }
       </div>
     </div>
@@ -49,3 +52,4 @@
         <button class="play" [routerLink]="['/level', nextLevel]">Next Level</button><br>
     </div>
 }
+<app-footer></app-footer>

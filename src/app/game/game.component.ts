@@ -3,11 +3,12 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router'; // Import 
 import { Subscription } from 'rxjs';
 import { LevelService } from '../level.service';
 import { Level } from '../types';
+import { FooterComponent } from '../footer/footer.component';
 
 @Component({
   selector: 'app-game',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, FooterComponent],
   templateUrl: './game.component.html',
   styleUrl: './game.component.css'
 })
@@ -77,13 +78,18 @@ export class GameComponent implements OnInit, OnDestroy {
     // Zoek de eerste lege plek om de letter in te voegen
     const emptyIndexGuessed = this.currentLevel.guessedLetters.findIndex(guessedLetter => guessedLetter === '');
     if (emptyIndexGuessed !== -1) {
-      this.currentLevel.guessedLetters[emptyIndexGuessed] = letter;
+      this.currentLevel.guessedLetters[emptyIndexGuessed] = this.currentLevel.letters[index];
       this.currentLevel.usedLetterIndices.push(index); // Markeer de index als gebruikt
       this.levelService.updateGuessedLetters('raad_het_woord', this.currentLevel.levelNumber, this.currentLevel.guessedLetters); // Update via de service
       this.levelService.updateUsedLetterIndices('raad_het_woord', this.currentLevel.levelNumber, this.currentLevel.usedLetterIndices); // Update de gebruikte indices via de service
     }
   }
-
+  checkLetter(index: number){
+    if(this.currentLevel?.usedLetterIndices.includes(index))
+      return false;
+    else
+    return true
+  }
   removeLetter(indexGuessed: number): void {
     if (!this.currentLevel) return;
 
@@ -113,14 +119,23 @@ export class GameComponent implements OnInit, OnDestroy {
 
   useHint1(): void {
     if (!this.currentLevel) return;
-
+    let l = this.currentLevel.answer.length;
+    let rnd = Math.floor(Math.random() * l)
     if (this.score >= this.hintCost1) {
-      console.log('Hint 1 gebruikt');
-      this.score -= this.hintCost1;
+      console.log('Hint 1 gebruikt = ' + rnd);
       this.levelService.updateScore(this.score);
       // Implement hint 1 logic
+      if(this.checkLetter(rnd))
+      {
+        let x = this.currentLevel.letters.lastIndexOf(this.currentLevel.answer[rnd]);
+        this.currentLevel.usedLetterIndices.push(x);
+        this.currentLevel.guessedLetters[rnd] = this.currentLevel.answer[rnd];
+        this.levelService.updateGuessedLetters('raad_het_woord', this.currentLevel.levelNumber, this.currentLevel.guessedLetters); // Update via de service
+        this.levelService.updateUsedLetterIndices('raad_het_woord', this.currentLevel.levelNumber, this.currentLevel.usedLetterIndices); // Update de gebruikte indices via de service
+        this.score -= this.hintCost1;
+      }
     } else {
-      console.log('Niet genoeg geld');
+      console.log('Niet genoeg geld ' + rnd);
     }
   }
 
@@ -130,6 +145,7 @@ export class GameComponent implements OnInit, OnDestroy {
       console.log('Hint 2 gebruikt');
       this.score -= this.hintCost2;
       this.levelService.updateScore(this.score);
+      this.currentLevel.guessedLetters = this.currentLevel.answer
       // Implement hint 2 logic
     } else {
       console.log('Niet genoeg geld');
@@ -145,7 +161,7 @@ export class GameComponent implements OnInit, OnDestroy {
     if (guessedWord === correctAnswer) {
       console.log('Correct!!!!!');
       this.score += 10;
-      this.levelService.updateScore(this.score);
+      this.levelService.updateScore(10);
       this.levelService.updateLevelStatus('raad_het_woord', this.currentLevel.levelNumber, true);
       this.currentLevel.Done = true;
       // Implement win logic
