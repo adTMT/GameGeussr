@@ -1,0 +1,112 @@
+{
+    "levels": [
+      {
+        "levelNumber": 1,
+        "score": 0,
+        "letters": ["A", "B", "C", "D", "E", "F"],
+        "guessedLetters": ["", "_", "C", "", "E", ""],
+        "answer": ["A", "B", "C", "D", "E", "F"],
+        "Done": null
+      },
+      {
+        "levelNumber": 2,
+        "score": 0,
+        "letters": ["G", "H", "I", "J", "K", "L"],
+        "guessedLetters": ["", "_", "I", "", "K", ""],
+        "answer": ["G", "H", "I", "J", "K", "L"],
+        "Done": null
+      },
+      {
+        "levelNumber": 3,
+        "score": 0,
+        "letters": ["M", "N", "O", "P", "Q", "R"],
+        "guessedLetters": ["", "_", "O", "", "Q", ""],
+        "answer": ["M", "N", "O", "P", "Q", "R"],
+        "Done": null
+      }
+    ],
+    "games": {
+      "raad_het_woord": [
+        {
+        "levelNumber": 1,
+        "score": 0,
+        "letters": ["F", "5", "A", "2", "B", "R", "Z", "E", "O", "L", "C", "T"],
+        "guessedLetters": ["", "", "", "", "", ""],
+        "answer": ["E", "A", "F", "C", "2", "5"],
+        "Done": null,
+        "picture": "https://yorbodyfysiotherapie.nl/wp-content/uploads/2021/08/voetbal-blessures.jpg",
+        "usedLetterIndices": []
+      },
+      {
+        "levelNumber": 2,
+        "score": 0,
+        "letters": ["W", "O", "E", "T", "I", "R", "P", "A", "C", "K", "H", "3"],
+        "guessedLetters": ["", "", "", "","", "","",""],
+        "answer": ["W", "I", "T", "C", "H", "E", "R","3"],
+        "Done": null,
+        "picture": "https://i.pinimg.com/736x/36/78/52/367852bf053a8b00496b966cd739785a.jpg",
+        "usedLetterIndices": []
+      },
+      {
+        "levelNumber": 3,
+        "score": 0,
+        "letters": ["M", "É", "N", "P", "I", "O", "B", "O", "C", "K", "H", "L"],
+        "guessedLetters": ["", "", "", "","", "",""],
+        "answer": ["P", "O", "K", "É", "M", "O", "N"],
+        "Done": null,
+        "picture": "https://cdn.pixabay.com/photo/2016/07/23/13/21/pokemon-1536855_640.png",
+        "usedLetterIndices": []
+      },
+      {
+        "levelNumber": 4,
+        "score": 0,
+        "letters": ["M", "E", "N", "P", "I", "W", "U","D","R", "O", "C", "S", "H", "R","L","T","E","H","N","T","E"],
+        "guessedLetters": ["", "", "", "","", "","","","","","","",""],
+        "answer": ["M", "O", "N", "S", "T", "E", "R", "H", "U", "N", "T", "E", "R"],
+        "Done": null,
+        "picture": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDM3o-FC_zpY8SvcoYP-2_N8Ocl56HVWpckw&s",
+        "usedLetterIndices": []
+      }
+      ],
+      "emoji_quiz": [
+        {
+          "levelNumber": 1,
+          "score": 0,
+          "letters": ["😀", "😂", "😍", "😎", "🔥", "🚀"],
+          "guessedLetters": ["", "😂", "", "😎"],
+          "answer": ["😀", "😂", "😍", "😎"],
+          "Done": null,
+          "usedLetterIndices": []
+        },
+        {
+          "levelNumber": 2,
+          "score": 0,
+          "letters": ["🚗", "🏠", "🌳", "🍎", "🎶", "🌊"],
+          "guessedLetters": ["", "🏠", "", "🍎"],
+          "answer": ["🚗", "🏠", "🌳", "🍎"],
+          "Done": null,
+          "usedLetterIndices": []
+        }
+      ],
+      "color_quiz": [
+        {
+          "levelNumber": 1,
+          "score": 0,
+          "letters": ["rood", "blauw", "groen", "geel"],
+          "guessedLetters": ["", "blauw"],
+          "answer": ["rood", "blauw"],
+          "Done": null,
+          "usedLetterIndices": []
+        },
+        {
+          "levelNumber": 2,
+          "score": 0,
+          "letters": ["paars", "oranje", "bruin", "zwart"],
+          "guessedLetters": ["", "oranje"],
+          "answer": ["paars", "oranje"],
+          "Done": null,
+          "usedLetterIndices": []
+        }
+      ]
+    }
+  }

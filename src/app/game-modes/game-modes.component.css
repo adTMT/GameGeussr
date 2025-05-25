@@ -1,0 +1,40 @@
+.game-modes-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px;
+    opacity: 100%;
+    height: 26rem;
+    justify-content: center;
+    text-align: center;
+    font-size: xx-large;
+    font-weight: bolder;
+    background-color: #d17a25;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 15px; /* Use the larger radius for consistency */
+    width: 16rem;
+    text-shadow: 1px 1px 1px gray;
+  }
+  
+  .modes {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 20px;
+  }
+  
+  button {
+    padding: 15px 30px;
+    font-size: 18px;
+    border-radius: 10px;
+    border: none;
+    background-color: #4caf50;
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #388e3c;
+  }
+  

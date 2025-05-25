@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="header">
+    <span>Normal</span>
+    <div class="score">
+      <span>⭐ {{ userStars }}</span>
+      <span>💰 50</span>
+    </div>
+  </div>
+  <div class="level-grid">
+    <div
+      *ngFor="let level of levels"
+      class="level"
+      [ngClass]="{ locked: isLocked(level), unlocked: !isLocked(level) }"
+      (click)="handleLevelClick(level)"
+    >
+      {{ isLocked(level) ? "🔒" : completedLevels.has(level) ? "✔" : "?" }}
+</div>
+  </div>
+  
+</div>
+<app-footer></app-footer>

@@ -1,0 +1,36 @@
+.cirkel{
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    background-color: white;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    overflow: hidden;
+}
+.cirkelsettings{
+    border-radius: 50%;
+    height: 20px;
+    width: 20px;
+    background-color: white;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    overflow: hidden;
+}
+.audio{
+    height: 40px;
+    width: 40px;
+}
+.settings{
+    height: 20px;
+    width: 20px;
+}
+footer{
+    display: flex;
+    justify-content: space-between;
+}
+.back{
+    height: 40px;
+    width: 40px;
+}
