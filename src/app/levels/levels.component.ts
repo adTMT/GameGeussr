@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { LevelService } from '../level.service';
 import { FooterComponent } from '../footer/footer.component';
+import { Level } from '../types';
 
 
 @Component({
@@ -14,13 +15,16 @@ import { FooterComponent } from '../footer/footer.component';
   styleUrls: ['./levels.component.css']
 })
 export class LevelsComponent implements OnInit {
-  levels = Array.from({ length: 20 }, (_, i) => i + 1);
+  levels: Level[] | undefined;
   userStars = 0;
   unlockedLevels = 5;
   completedLevels: Set<number> = new Set();
-  gamemode: string = 'normal'; // default gamemode
+  gamemode: string; // default gamemode
 
-  constructor(private router: Router, private route: ActivatedRoute, private levelService: LevelService) {}
+  constructor(private router: Router, private route: ActivatedRoute, private levelService: LevelService) {
+    this.gamemode = levelService.getGamemode();
+    this.levels = levelService.getLevels(this.gamemode)
+  }
 
   ngOnInit(): void {
     // Get gamemode from route param

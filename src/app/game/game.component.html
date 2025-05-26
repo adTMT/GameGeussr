@@ -49,7 +49,7 @@
 @if (currentLevel?.Done == true) {
     <div class="level-container">
         <div class="level-done">W</div>
-        <button class="play" [routerLink]="['/level', nextLevel]">Next Level</button><br>
+        <button class="play" [routerLink]="['/level', gamemode ,nextLevel]">Next Level</button><br>
     </div>
 }
 <app-footer></app-footer>

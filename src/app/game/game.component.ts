@@ -20,6 +20,7 @@ export class GameComponent implements OnInit, OnDestroy {
   imageUrl: String = 'https://yorbodyfysiotherapie.nl/wp-content/uploads/2021/08/voetbal-blessures.jpg';
   routeSubscription?: Subscription;
   nextLevel: number;
+  gamemode: string;
 
   constructor(
     private levelService: LevelService,
@@ -33,6 +34,7 @@ export class GameComponent implements OnInit, OnDestroy {
     if (this.currentLevel) {
       this.currentLevel.usedLetterIndices = [];
     }
+    this.gamemode = levelService.getGamemode();
   }
 
   ngOnInit(): void {
@@ -40,7 +42,7 @@ export class GameComponent implements OnInit, OnDestroy {
       const id = params.get('id');
       if (id && !isNaN(Number(id))) {
         const levelNumber = Number(id);
-        this.currentLevel = this.levelService.getLevel('raad_het_woord', levelNumber);
+        this.currentLevel = this.levelService.getLevel(this.gamemode, levelNumber);
         if(this.currentLevel?.levelNumber)
         this.nextLevel = this.currentLevel?.levelNumber + 1;
         if (!this.currentLevel) {
@@ -162,9 +164,9 @@ export class GameComponent implements OnInit, OnDestroy {
       console.log('Correct!!!!!');
       this.score += 10;
       this.levelService.updateScore(10);
-      this.levelService.updateLevelStatus('raad_het_woord', this.currentLevel.levelNumber, true);
+      this.levelService.updateLevelStatus(this.gamemode, this.currentLevel.levelNumber, true);
       this.currentLevel.Done = true;
-      this.levelService.markLevelCompleted('raad_het_woord', this.currentLevel.levelNumber);
+      this.levelService.markLevelCompleted(this.gamemode, this.currentLevel.levelNumber);
       // Implement win logic
     } else {
       console.log('Niet correct! :(');

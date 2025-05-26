@@ -10,6 +10,7 @@ export class LevelService {
   public score: number = 0;
   public hintCost1: number = 2;
   public hintCost2: number = 5;
+  public gamemode: string = "classic"
 
   constructor() {
     // Initialize usedLetterIndices
@@ -34,6 +35,12 @@ export class LevelService {
       return { ...gameLevels[levelNumber - 1] }; // Return a copy
     }
     return undefined;
+  }
+  getGamemode(){
+    return this.gamemode;
+  }
+  updateGamemode(gameType: string){
+    this.gamemode = gameType;
   }
 
   // --- Update Methods ---

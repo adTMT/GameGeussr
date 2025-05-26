@@ -26,7 +26,7 @@
       }
     ],
     "games": {
-      "raad_het_woord": [
+      "classic": [
         {
         "levelNumber": 1,
         "score": 0,
@@ -60,11 +60,11 @@
       {
         "levelNumber": 4,
         "score": 0,
-        "letters": ["M", "E", "N", "P", "I", "W", "U","D","R", "O", "C", "S", "H", "R","L","T","E","H","N","T","E"],
-        "guessedLetters": ["", "", "", "","", "","","","","","","",""],
-        "answer": ["M", "O", "N", "S", "T", "E", "R", "H", "U", "N", "T", "E", "R"],
+        "letters": ["L", "E", "N", "I", "G", "U","D","R", "O", "H", "R","L","T","E","H","N"],
+        "guessedLetters": ["", "", "", "","", "","","",""],
+        "answer": ["E", "L", "D", "E", "N", "R", "I", "N", "G"],
         "Done": null,
-        "picture": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDM3o-FC_zpY8SvcoYP-2_N8Ocl56HVWpckw&s",
+        "picture": "https://res.cloudinary.com/cook-becker/image/fetch/q_auto,f_auto,w_380,h_380,c_fill,g_center,e_sharpen/https://candb.com/site/candb/images/artwork/erdtree_elden-ring_bandai-namco.jpg",
         "usedLetterIndices": []
       }
       ],
@@ -72,21 +72,44 @@
         {
           "levelNumber": 1,
           "score": 0,
-          "letters": ["😀", "😂", "😍", "😎", "🔥", "🚀"],
-          "guessedLetters": ["", "😂", "", "😎"],
-          "answer": ["😀", "😂", "😍", "😎"],
+          "letters": ["F", "5", "A", "2", "B", "R", "Z", "E", "O", "L", "C", "T"],
+          "guessedLetters": ["", "", "", ""],
+          "answer": ["E", "A", "F", "C"],
           "Done": null,
+          "picture": "https://cdn.qwenlm.ai/output/4574360e-4409-4a33-8454-23c1a5b08f5d/t2i/5a2d2d23-e175-4f50-887e-fd17895d9f34/8cef944d-4502-42ce-ad01-8d4453de3356.png?key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXNvdXJjZV91c2VyX2lkIjoiNDU3NDM2MGUtNDQwOS00YTMzLTg0NTQtMjNjMWE1YjA4ZjVkIiwicmVzb3VyY2VfaWQiOiI4Y2VmOTQ0ZC00NTAyLTQyY2UtYWQwMS04ZDQ0NTNkZTMzNTYiLCJyZXNvdXJjZV9jaGF0X2lkIjpudWxsfQ.f87InX9-9Mm64x59c2XSQxHFLOIUndIr9-7OLVZzh7w",
           "usedLetterIndices": []
         },
         {
           "levelNumber": 2,
           "score": 0,
-          "letters": ["🚗", "🏠", "🌳", "🍎", "🎶", "🌊"],
-          "guessedLetters": ["", "🏠", "", "🍎"],
-          "answer": ["🚗", "🏠", "🌳", "🍎"],
+          "letters": ["W", "O", "E", "T", "I", "R", "P", "A", "C", "K", "H", "3"],
+          "guessedLetters": ["", "", "", "","","",""],
+          "answer": ["W", "I", "T", "C", "H", "E", "R"],
           "Done": null,
+          "picture": "https://cdn.qwenlm.ai/output/4574360e-4409-4a33-8454-23c1a5b08f5d/t2i/5a2d2d23-e175-4f50-887e-fd17895d9f34/204b05c4-79eb-416c-a40a-41334924c242.png?key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXNvdXJjZV91c2VyX2lkIjoiNDU3NDM2MGUtNDQwOS00YTMzLTg0NTQtMjNjMWE1YjA4ZjVkIiwicmVzb3VyY2VfaWQiOiIyMDRiMDVjNC03OWViLTQxNmMtYTQwYS00MTMzNDkyNGMyNDIiLCJyZXNvdXJjZV9jaGF0X2lkIjpudWxsfQ.IV4FaE-Wd-ci1EBy9nlHxuLa5Gkrrh8vD2IUB2Icim0",
+          "usedLetterIndices": []
+        },
+        {
+          "levelNumber": 3,
+          "score": 0,
+          "letters": ["M", "É", "N", "P", "I", "O", "B", "O", "C", "K", "H", "L"],
+          "guessedLetters": ["", "", "", "","", "",""],
+          "answer": ["P", "O", "K", "É", "M", "O", "N"],
+          "Done": null,
+          "picture": "https://cdn.qwenlm.ai/output/4574360e-4409-4a33-8454-23c1a5b08f5d/t2i/5a2d2d23-e175-4f50-887e-fd17895d9f34/082ee54f-23bd-407c-9edf-5cf7ef5c2d01.png?key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXNvdXJjZV91c2VyX2lkIjoiNDU3NDM2MGUtNDQwOS00YTMzLTg0NTQtMjNjMWE1YjA4ZjVkIiwicmVzb3VyY2VfaWQiOiIwODJlZTU0Zi0yM2JkLTQwN2MtOWVkZi01Y2Y3ZWY1YzJkMDEiLCJyZXNvdXJjZV9jaGF0X2lkIjpudWxsfQ.9_RPozKTJLfVv_jBKPVN4mmULGjgEKG0no8AvbhgQNc",
+          "usedLetterIndices": []
+        },
+        {
+          "levelNumber": 4,
+          "score": 0,
+          "letters": ["L","O", "A", "S","t","S", "T", "F", "H", "U", "E", "B", "O", "C", "K"],
+          "guessedLetters": ["", "", "", "", "","","",""],
+          "answer": ["L", "A", "S", "T", "O", "F", "U", "S"],
+          "Done": null,
+          "picture": "https://sdmntprwestus2.oaiusercontent.com/files/00000000-7ba4-61f8-9ef4-1754f2ca14dd/raw?se=2025-05-26T16%3A29%3A33Z&sp=r&sv=2024-08-04&sr=b&scid=ea9852bf-d005-53b0-9d9b-637bd237094a&skoid=30ec2761-8f41-44db-b282-7a0f8809659b&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-05-25T22%3A44%3A08Z&ske=2025-05-26T22%3A44%3A08Z&sks=b&skv=2024-08-04&sig=RQpEsj/wJcNYSOZvUXezo3HJuVtKoqVW9CyEP1xYGKw%3D",
           "usedLetterIndices": []
         }
+
       ],
       "color_quiz": [
         {
