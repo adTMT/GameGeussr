@@ -1,17 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { LevelsComponent } from './levels.component';
 
-describe('LevelsComponent', () => {
-  let component: LevelsComponent;
-  let fixture: ComponentFixture<LevelsComponent>;
+import { GameModesComponent } from './game-modes.component';
+
+describe('GameModesComponent', () => {
+  let component: GameModesComponent;
+  let fixture: ComponentFixture<GameModesComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [LevelsComponent]
+      imports: [GameModesComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(LevelsComponent);
+    fixture = TestBed.createComponent(GameModesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

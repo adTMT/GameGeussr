@@ -164,6 +164,7 @@ export class GameComponent implements OnInit, OnDestroy {
       this.levelService.updateScore(10);
       this.levelService.updateLevelStatus('raad_het_woord', this.currentLevel.levelNumber, true);
       this.currentLevel.Done = true;
+      this.levelService.markLevelCompleted('raad_het_woord', this.currentLevel.levelNumber);
       // Implement win logic
     } else {
       console.log('Niet correct! :(');

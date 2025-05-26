@@ -33,6 +33,19 @@
     font-size: 20px;
     font-weight: bolder;
 }
+.info{
+    width: 10rem;
+    margin-left: 25%;
+    margin-top: 2px;
+    background-color: #EEA915;
+    font-size: 20px;
+    font-weight: bolder;
+}
+.info:hover{
+    background-color: #b58112;
+    color: rgb(82, 82, 82);
+}
+
 .gamemodes:hover{
     background-color: #b58112;
     color: rgb(82, 82, 82);
